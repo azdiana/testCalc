@@ -18,7 +18,7 @@ describe('No command', () => {
         cy.get('input[value="add"]').invoke('removeAttr', 'checked');
         cy.get('input[value="Calculate"]').click();
         cy.get('[role=alert]').should(($alert) => {
-                    expect($alert).to.contain('Sent');
+                    expect($alert).to.contain('No operand.');
                 });
     })
 })
