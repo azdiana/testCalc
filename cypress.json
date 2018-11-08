@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://localhost:8080/testCalc/webUI",
+  "viewportHeight": 800,
+  "viewportWidth": 1280,
+  "pageLoadTimeout": 70000,
+  "viewportWidth": 1280,
+  "viewportHeight": 720,
+  "defaultCommandTimeout": 20000
+}
