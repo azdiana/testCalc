@@ -24,3 +24,6 @@ IMPORT REST API TESTS
 ![Run collection](https://github.com/azdiana/testCalc/blob/master/images/run_postman_collection.png)
 
 [Video with collection run](https://www.dropbox.com/s/8i421fdadldvrg0/postman_tests.mp4?dl=0)
+
+
+**Bugs description** is added [here](https://github.com/azdiana/testCalc/blob/master/bugs/bugs.md).
