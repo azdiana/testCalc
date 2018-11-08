@@ -1,0 +1,1699 @@
+{
+	"info": {
+		"_postman_id": "9eb2973e-4276-49c0-ae43-013a91699f19",
+		"name": "testCalc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET add",
+			"item": [
+				{
+					"name": "check successful addition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "099343ec-8525-42ce-9c86-66cf5114d025",
+								"exec": [
+									"pm.test(\"Check successful addition\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(pm.environment.get(\"val1\")+pm.environment.get(\"val2\"));",
+									"});",
+									"",
+									"pm.test(\"Check status\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.not.be.error; ",
+									"    pm.response.to.have.jsonBody(\"\"); ",
+									"    pm.response.to.not.have.jsonBody(\"error\"); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1e93393a-0841-432b-b3a4-c08c95c84329",
+								"exec": [
+									"pm.environment.set(\"val1\", parseInt(Math.floor(Math.random()*1073741823)));",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*-1073741823)));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/add?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check max value addition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "099343ec-8525-42ce-9c86-66cf5114d025",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1e93393a-0841-432b-b3a4-c08c95c84329",
+								"exec": [
+									"pm.environment.set(\"val1\", 2147483648);",
+									"pm.environment.set(\"val2\", 0);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/add?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check min value addition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "099343ec-8525-42ce-9c86-66cf5114d025",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1e93393a-0841-432b-b3a4-c08c95c84329",
+								"exec": [
+									"    pm.environment.set(\"val1\", 0);",
+									"    pm.environment.set(\"val2\", -2147483649);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/add?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check invalid value addition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "099343ec-8525-42ce-9c86-66cf5114d025",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1e93393a-0841-432b-b3a4-c08c95c84329",
+								"exec": [
+									"pm.environment.set(\"val1\", \"qwe\");",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*-1073741823)));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/add?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check overflow value addition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "099343ec-8525-42ce-9c86-66cf5114d025",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1e93393a-0841-432b-b3a4-c08c95c84329",
+								"exec": [
+									"pm.environment.set(\"val1\", 2147483648);",
+									"pm.environment.set(\"val2\", 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/add?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "083e3607-471b-4da4-b878-a7a06e4d865a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f5415a39-7e79-40eb-9a59-14d92dc29a51",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "GET sub",
+			"item": [
+				{
+					"name": "check successful subtraction",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "233d172e-ca8b-432b-a3df-37fce9c47f84",
+								"exec": [
+									"pm.environment.set(\"val1\", parseInt(Math.floor(Math.random()*1073741823)));",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*-1073741823)));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "21703531-0922-480a-abd3-7867e44c9b7b",
+								"exec": [
+									"pm.test(\"Check successful subtraction\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(pm.environment.get(\"val1\")-pm.environment.get(\"val2\"));",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check status\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.not.be.error; ",
+									"    pm.response.to.have.jsonBody(\"\"); ",
+									"    pm.response.to.not.have.jsonBody(\"error\"); ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/subtract?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subtract"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check max value subtraction",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "233d172e-ca8b-432b-a3df-37fce9c47f84",
+								"exec": [
+									"pm.environment.set(\"val1\", 2147483648);",
+									"pm.environment.set(\"val2\", 0);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "21703531-0922-480a-abd3-7867e44c9b7b",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/subtract?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subtract"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check min value subtraction",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "233d172e-ca8b-432b-a3df-37fce9c47f84",
+								"exec": [
+									"pm.environment.set(\"val1\", 0);",
+									"pm.environment.set(\"val2\", 2147483649);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "21703531-0922-480a-abd3-7867e44c9b7b",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/subtract?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subtract"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check invalid value subtraction",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "233d172e-ca8b-432b-a3df-37fce9c47f84",
+								"exec": [
+									"pm.environment.set(\"val1\", \"qwe\");",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*-2147483647)));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "21703531-0922-480a-abd3-7867e44c9b7b",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/subtract?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subtract"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check overflow value subtraction",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "233d172e-ca8b-432b-a3df-37fce9c47f84",
+								"exec": [
+									"pm.environment.set(\"val1\", 2147483648);",
+									"pm.environment.set(\"val2\", -1);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "21703531-0922-480a-abd3-7867e44c9b7b",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/subtract?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"subtract"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET mul",
+			"item": [
+				{
+					"name": "check successful multiplication",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52c8c0b2-5bfc-48ea-b6e4-ece4ee771598",
+								"exec": [
+									"pm.environment.set(\"val1\", parseInt(Math.floor(Math.random()*46340)));",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*-46340)));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cac6236-2362-4e7e-b35e-f1f8dbf2f7ad",
+								"exec": [
+									"pm.test(\"Check successful multiplication\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(pm.environment.get(\"val1\")*pm.environment.get(\"val2\"));",
+									"});",
+									"",
+									"pm.test(\"Check status\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.not.be.error; ",
+									"    pm.response.to.have.jsonBody(\"\"); ",
+									"    pm.response.to.not.have.jsonBody(\"error\"); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/multiply?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"multiply"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check max value multiplication",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52c8c0b2-5bfc-48ea-b6e4-ece4ee771598",
+								"exec": [
+									"pm.environment.set(\"val1\", 2147483648);",
+									"pm.environment.set(\"val2\", 1);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cac6236-2362-4e7e-b35e-f1f8dbf2f7ad",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/multiply?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"multiply"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check min value multiplication",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52c8c0b2-5bfc-48ea-b6e4-ece4ee771598",
+								"exec": [
+									"pm.environment.set(\"val1\", 1);",
+									"pm.environment.set(\"val2\", 2147483649);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cac6236-2362-4e7e-b35e-f1f8dbf2f7ad",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/multiply?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"multiply"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check invalid value multiplication",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52c8c0b2-5bfc-48ea-b6e4-ece4ee771598",
+								"exec": [
+									"pm.environment.set(\"val1\", \"qwe\");",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*-46340)));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cac6236-2362-4e7e-b35e-f1f8dbf2f7ad",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/multiply?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"multiply"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check overflow value multiplication",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "52c8c0b2-5bfc-48ea-b6e4-ece4ee771598",
+								"exec": [
+									"pm.environment.set(\"val1\", 2147483648);",
+									"pm.environment.set(\"val2\", 2);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cac6236-2362-4e7e-b35e-f1f8dbf2f7ad",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/multiply?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"multiply"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET div",
+			"item": [
+				{
+					"name": "check successful division",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d104705-5add-450e-a6c9-73d769323c00",
+								"exec": [
+									"pm.environment.set(\"val1\", parseInt(Math.floor(Math.random()*2147483647)));",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*2147483647)));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e5f592e-9f2b-4698-b98e-ce10211783f3",
+								"exec": [
+									"pm.test(\"Check successful division\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(Math.trunc(pm.environment.get(\"val1\")/pm.environment.get(\"val2\")));",
+									"});",
+									"",
+									"pm.test(\"Check status\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.not.be.error; ",
+									"    pm.response.to.have.jsonBody(\"\"); ",
+									"    pm.response.to.not.have.jsonBody(\"error\"); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/divide?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"divide"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check max value division",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d104705-5add-450e-a6c9-73d769323c00",
+								"exec": [
+									"pm.environment.set(\"val1\", 2147483648);",
+									"pm.environment.set(\"val2\", 1);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e5f592e-9f2b-4698-b98e-ce10211783f3",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/divide?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"divide"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check min value division",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d104705-5add-450e-a6c9-73d769323c00",
+								"exec": [
+									"pm.environment.set(\"val1\", 1);",
+									"pm.environment.set(\"val2\", 2147483649);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e5f592e-9f2b-4698-b98e-ce10211783f3",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/divide?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"divide"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check division by 0",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d104705-5add-450e-a6c9-73d769323c00",
+								"exec": [
+									"pm.environment.set(\"val1\", parseInt(Math.floor(Math.random()*2147483647)));",
+									"pm.environment.set(\"val2\",0);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e5f592e-9f2b-4698-b98e-ce10211783f3",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/divide?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"divide"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check invalid value division",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d104705-5add-450e-a6c9-73d769323c00",
+								"exec": [
+									"pm.environment.set(\"val1\", \"qwe\");",
+									"pm.environment.set(\"val2\", parseInt(Math.floor(Math.random()*2147483647)));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e5f592e-9f2b-4698-b98e-ce10211783f3",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/divide?val1={{val1}}&val2={{val2}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"divide"
+							],
+							"query": [
+								{
+									"key": "val1",
+									"value": "{{val1}}"
+								},
+								{
+									"key": "val2",
+									"value": "{{val2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT compute",
+			"item": [
+				{
+					"name": "successful addition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5d5a22b0-0450-4b4d-840f-9d9960d90b8a",
+								"exec": [
+									"pm.test(\"Check successful addition\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(-75395657);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": 58795,\r\n\t\"val2\": -75454452,\r\n\t\"operation\": \"add\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "successful subtraction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "30a696c5-9fa9-4ba7-9462-63124863a223",
+								"exec": [
+									"pm.test(\"Check successful subtraction\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(75513247);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": 58795,\r\n\t\"val2\": -75454452,\r\n\t\"operation\": \"sub\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "successful multiplication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b4850631-8b47-42ae-bc06-dae18ce30dd7",
+								"exec": [
+									"pm.test(\"Check successful multiplication\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(356711428);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": 58795,\r\n\t\"val2\": -75454452,\r\n\t\"operation\": \"mul\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "successful division",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c63cc168-0602-45d4-b876-3e32927edcc2",
+								"exec": [
+									"pm.test(\"Check successful division\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.result)",
+									"        .to.eql(-779);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": 587958145,\r\n\t\"val2\": -754452,\r\n\t\"operation\": \"div\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SQL injection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd9a3ddf-9f0c-42c3-a610-ef44f45b4811",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": \"7'); DROP TABLE Result;--\",\r\n\t\"val2\": 7,\r\n\t\"operation\": \"add\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "no operand",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c50971b1-f277-4b44-b67f-ea25ea0fa3ac",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "43ecc72c-e012-4a95-b959-c19d90907a99",
+								"exec": [
+									"pm.test(\"Check status 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": 5555,\r\n\t\"val2\": 77777\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "max value",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c50971b1-f277-4b44-b67f-ea25ea0fa3ac",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "43ecc72c-e012-4a95-b959-c19d90907a99",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.response.to.be.error; ",
+									"    pm.response.to.not.have.jsonBody(\"out of range of int\"); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": 2147483649,\r\n\t\"val2\": 77777,\r\n\t\"operation\": \"add\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "min value",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c50971b1-f277-4b44-b67f-ea25ea0fa3ac",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "43ecc72c-e012-4a95-b959-c19d90907a99",
+								"exec": [
+									"pm.test(\"Check status 404\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.response.to.be.error; ",
+									"    pm.response.to.not.have.jsonBody(\"out of range of int\"); ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": -2147483649,\r\n\t\"val2\": 77777,\r\n\t\"operation\": \"add\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "invalid operand",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "30106d99-8a93-4907-8e2d-1cd13b4dfebf",
+								"exec": [
+									"pm.test(\"Check status 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"val1\": 5,\r\n\t\"val2\": 7,\r\n\t\"operation\": \"test\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/compute",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"compute"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "59979221-7bc9-414e-b4e1-e29e2c4afdec",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fceea4ff-3ae9-4788-91eb-8f825110b8f7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "15b6d7bc-bee3-4016-8956-2cb865759142",
+			"key": "url",
+			"value": "http://localhost:8080/testCalc/restWS",
+			"type": "string"
+		},
+		{
+			"id": "a8380874-fd7e-4eaf-90d5-014da59f9652",
+			"key": "val1",
+			"value": "$randomInt",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "a5514a6c-9d4f-4b9f-9e13-839aac78a7e2",
+			"key": "val2",
+			"value": "$randomInt",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
